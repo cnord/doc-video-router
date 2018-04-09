@@ -44,6 +44,10 @@ IP-камеры должны поддерживать видеокодек H264.
 * краткое руководство на русском языке;
 * гарантийный талон.
 
-![Внешний вид видеороутера][id-00-01]
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth]{
+ 		\includegraphics[width=0.9\textwidth]{img/vr-small.png}
+ 	}
+	\captionof{figure}{Внешний вид видеороутера}
+\end{minipage}
 
-[id-00-01]: img/vr-small.png "Внешний вид видеороутера"
