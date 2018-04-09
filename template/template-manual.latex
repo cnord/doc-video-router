@@ -1,7 +1,15 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$]{$documentclass$}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+
+\usepackage{caption}
+\captionsetup{font=footnotesize,textfont=it}
+\captionsetup[table]{belowskip=5pt}
+
 \usepackage[utf8]{inputenc}
+\usepackage[russian]{babel} % правила переноса
+\usepackage{cmap} % чтобы работал поиск по PDF
+\pdfcompresslevel=9 % сжимать PDF
 
 \usepackage{geometry}
 \geometry{top=2cm} %поле сверху
@@ -13,24 +21,32 @@ $if(natbib)$
 \usepackage{natbib}
 \bibliographystyle{plainnat}
 $endif$
+
 $if(biblatex)$
 \usepackage{biblatex}
+
 $if(biblio-files)$
 \bibliography{$biblio-files$}
 $endif$
+
 $endif$
+
 $if(listings)$
 \usepackage{listings}
 $endif$
+
 $if(lhs)$
 \lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
+
 $if(highlighting-macros)$
 $highlighting-macros$
 $endif$
+
 $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
+
 $if(fancy-enums)$
 % Redefine labelwidth for lists; otherwise, the enumerate package will cause
 % markers to extend beyond the left margin.
@@ -40,46 +56,57 @@ $if(fancy-enums)$
 }\makeatother
 \usepackage{enumerate}
 $endif$
+
 $if(tables)$
 \usepackage{ctable}
 \usepackage{float} % provides the H option for float placement
 $endif$
+
 $if(url)$
 \usepackage{url}
 $endif$
-$if(graphics)$
-\usepackage{graphicx}
+
+\usepackage{graphicx, subfigure}
+\usepackage{wrapfig}
+
 % We will generate all images so they have a width \maxwidth. This means
 % that they will get their normal width if they fit onto the page, but
 % are scaled down if they would overflow the margins.
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
-\else\Gin@nat@width\fi}
+	\def\maxwidth
+		{\ifdim\Gin@nat@width>\linewidth\linewidth
+		\else\Gin@nat@width\fi}
 \makeatother
-\let\Oldincludegraphics\includegraphics
-$endif$
-  \usepackage[unicode=true,
-              bookmarks=true,
-              pdfauthor={$author-meta$},
-              pdftitle={$title-meta$},
-              colorlinks=true,
-              linkcolor=blue]{hyperref}
+	\let\Oldincludegraphics\includegraphics
+
+  
+\usepackage[unicode=true,
+            bookmarks=true,
+            pdfauthor={$author-meta$},
+            pdftitle={$title-meta$},
+            colorlinks=true,
+            linkcolor=blue]{hyperref}
+
 \hypersetup{breaklinks=true, pdfborder={0 0 0}}
+
 $if(strikeout)$
 \usepackage[normalem]{ulem}
 % avoid problems with \sout in headers with hyperref:
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 $endif$
+
 $if(subscript)$
 \newcommand{\textsubscr}[1]{\ensuremath{_{\scriptsize\textrm{#1}}}}
 $endif$
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
+
 $if(numbersections)$
 $else$
 \setcounter{secnumdepth}{2}
 $endif$
+
 $if(verbatim-in-note)$
 \VerbatimFootnotes % allows verbatim text in footnotes
 $endif$
@@ -98,7 +125,7 @@ $endfor$
 \begin{document}
 \input{title-manual.tex}
 
-\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+%\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
 
 $for(include-before)$
 $include-before$
